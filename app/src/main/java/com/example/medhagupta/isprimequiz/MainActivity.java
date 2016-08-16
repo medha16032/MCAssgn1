@@ -1,0 +1,151 @@
+package com.example.medhagupta.isprimequiz;
+
+import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.Random;
+
+
+public class MainActivity extends ActionBarActivity {
+
+    static int correct = 0;
+    static int wrong = 0;
+    Button buttonTrue;
+    Button buttonFalse;
+    Button buttonNext;
+    TextView textView_question;
+    TextView correctAns;
+    TextView inCorrectAns;
+    int Number;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        buttonTrue = (Button) findViewById(R.id.TrueButton);
+        buttonFalse = (Button) findViewById(R.id.FalseButton);
+        buttonNext = (Button) findViewById(R.id.NextButton);
+        textView_question = (TextView) findViewById(R.id.QuestionTextView);
+        correctAns = (TextView) findViewById(R.id.RightTextView);
+        inCorrectAns = (TextView) findViewById(R.id.textView2);
+        Random random = new Random();
+        Number = random.nextInt(1000) + 1;
+        String number = Integer.toString(Number);
+        textView_question.setText("Is " + number + " prime?");
+
+        buttonNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createRandom();
+
+                //Toast.makeText(getApplicationContext(), num, Toast.LENGTH_LONG).show();
+
+
+            }
+        });
+
+
+        buttonTrue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int res = checkPrime(Number);
+                if (res == 0) {
+                    correct++;
+
+                    String corr = Integer.toString(correct);
+                    correctAns.setText("Right:" + corr);
+                    Toast.makeText(getApplicationContext(), "Correct!!", Toast.LENGTH_LONG).show();
+                } else {
+                    wrong++;
+                    String wr = Integer.toString(wrong);
+                    inCorrectAns.setText("Wrong:" + wr);
+                    Toast.makeText(getApplicationContext(), "InCorrect!!", Toast.LENGTH_LONG).show();
+                }
+                createRandom();
+            }
+        });
+
+        buttonFalse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int res = checkPrime(Number);
+                if (res == 1) {
+                    correct++;
+
+                    String corr = Integer.toString(correct);
+                    correctAns.setText("Right:" + corr);
+                    Toast.makeText(getApplicationContext(), "Correct!!", Toast.LENGTH_LONG).show();
+                } else {
+
+                    wrong++;
+                    String wr = Integer.toString(wrong);
+                    inCorrectAns.setText("Wrong:" + wr);
+
+                    Toast.makeText(getApplicationContext(), "InCorrect!!", Toast.LENGTH_LONG).show();
+                }
+                createRandom();
+            }
+
+        });
+
+    }
+
+
+    int checkPrime(int n) {
+
+        if (n == 1)
+            return 1;
+
+        else if (n == 2 || n == 3 || n == 5)
+            return 0;
+        else {
+            if (n % 2 == 0)
+                return 1;
+            else {
+                for (int i = 3; i <= n / 2; i += 2) {
+                    if (n % i == 0) {
+                        return 1;
+                    }
+                }
+            }
+        }
+        return 0;
+
+    }
+
+    void createRandom() {
+        Random rand = new Random();
+        Number = rand.nextInt(1000) + 1;
+        String num = Integer.toString(Number);
+        textView_question.setText("Is " + num + " prime?");
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+}
