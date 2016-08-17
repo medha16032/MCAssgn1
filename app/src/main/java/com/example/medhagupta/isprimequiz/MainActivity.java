@@ -2,6 +2,7 @@ package com.example.medhagupta.isprimequiz;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +15,9 @@ import java.util.Random;
 
 public class MainActivity extends ActionBarActivity {
 
+    private static final String TAG = "MainActivity";
+    private static final String TAG1 = "MainActivity";
+    private static final String TAG2 = "MainActivity";
     static int correct = 0;
     static int wrong = 0;
     Button buttonTrue;
@@ -23,6 +27,7 @@ public class MainActivity extends ActionBarActivity {
     TextView correctAns;
     TextView inCorrectAns;
     int Number;
+    private String questn, correctString, wrongString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,16 +40,28 @@ public class MainActivity extends ActionBarActivity {
         textView_question = (TextView) findViewById(R.id.QuestionTextView);
         correctAns = (TextView) findViewById(R.id.RightTextView);
         inCorrectAns = (TextView) findViewById(R.id.textView2);
+
+        if (savedInstanceState != null) {
+            questn = savedInstanceState.getString(TAG);
+            correctString = savedInstanceState.getString(TAG1);
+            wrongString = savedInstanceState.getString(TAG2);
+            textView_question.setText(questn);
+            correctAns.setText(correctString);
+            inCorrectAns.setText(wrongString);
+
+        } else {
+
         Random random = new Random();
         Number = random.nextInt(1000) + 1;
         String number = Integer.toString(Number);
-        textView_question.setText("Is " + number + " prime?");
+            textView_question.setText("Is " + number + " prime?");
+        }
 
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 createRandom();
-
+                questn = textView_question.getText().toString();
                 //Toast.makeText(getApplicationContext(), num, Toast.LENGTH_LONG).show();
 
 
@@ -60,12 +77,12 @@ public class MainActivity extends ActionBarActivity {
                     correct++;
 
                     String corr = Integer.toString(correct);
-                    correctAns.setText("Right:" + corr);
+                    correctAns.setText(corr);
                     Toast.makeText(getApplicationContext(), "Correct!!", Toast.LENGTH_LONG).show();
                 } else {
                     wrong++;
                     String wr = Integer.toString(wrong);
-                    inCorrectAns.setText("Wrong:" + wr);
+                    inCorrectAns.setText(wr);
                     Toast.makeText(getApplicationContext(), "InCorrect!!", Toast.LENGTH_LONG).show();
                 }
                 createRandom();
@@ -80,13 +97,13 @@ public class MainActivity extends ActionBarActivity {
                     correct++;
 
                     String corr = Integer.toString(correct);
-                    correctAns.setText("Right:" + corr);
+                    correctAns.setText(corr);
                     Toast.makeText(getApplicationContext(), "Correct!!", Toast.LENGTH_LONG).show();
                 } else {
 
                     wrong++;
                     String wr = Integer.toString(wrong);
-                    inCorrectAns.setText("Wrong:" + wr);
+                    inCorrectAns.setText(wr);
 
                     Toast.makeText(getApplicationContext(), "InCorrect!!", Toast.LENGTH_LONG).show();
                 }
@@ -148,4 +165,63 @@ public class MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        questn = textView_question.getText().toString();
+        correctString = correctAns.getText().toString();
+        wrongString = inCorrectAns.getText().toString();
+
+
+        savedInstanceState.putString(TAG, questn);
+        savedInstanceState.putString(TAG1, correctString);
+        savedInstanceState.putString(TAG2, wrongString);
+
+        super.onSaveInstanceState(savedInstanceState);
+
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d(TAG, "Inside OnStart");
+        questn = textView_question.getText().toString();
+        correctString = correctAns.getText().toString();
+        wrongString = inCorrectAns.getText().toString();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d(TAG, "Inside OnPause");
+        questn = textView_question.getText().toString();
+        correctString = correctAns.getText().toString();
+        wrongString = inCorrectAns.getText().toString();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG, "Inside OnREsume");
+        questn = textView_question.getText().toString();
+        correctString = correctAns.getText().toString();
+        wrongString = inCorrectAns.getText().toString();
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.d(TAG, "Inside OnSTop");
+        questn = textView_question.getText().toString();
+        correctString = correctAns.getText().toString();
+        wrongString = inCorrectAns.getText().toString();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "Inside OnDestroy");
+    }
+
 }
