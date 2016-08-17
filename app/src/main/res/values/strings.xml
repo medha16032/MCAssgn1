@@ -3,4 +3,9 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="isPrime">Is Prime?</string>
+    <string name="Yes">YES</string>
+    <string name="No">NO</string>
+    <string name="newText">new Text</string>
+    <string name="next">NEXT</string>
 </resources>

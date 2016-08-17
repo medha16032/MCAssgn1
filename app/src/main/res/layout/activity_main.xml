@@ -24,7 +24,7 @@
         android:layout_alignParentTop="true"
         android:background="#FF4081"
         android:padding="8dp"
-        android:text="Is Prime?"
+        android:text="@string/isPrime"
         android:textColor="#FFF3E0"
         android:textSize="35sp"
         android:textStyle="bold" />
@@ -44,7 +44,7 @@
         android:layout_marginStart="20dp"
         android:background="#FF4081"
         android:padding="8dp"
-        android:text="Yes"
+        android:text="@string/Yes"
         android:textColor="#FFF3E0"
         android:textSize="20sp" />
 
@@ -59,7 +59,7 @@
         android:layout_marginRight="51dp"
         android:background="#FF4081"
         android:padding="8dp"
-        android:text="No"
+        android:text="@string/No"
         android:textColor="#FFF3E0"
         android:textSize="20sp" />
         </LinearLayout>
@@ -69,7 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="New Text"
+        android:text="@string/newText"
         android:textColor="#FF4081"
         android:textSize="30sp" />
 
@@ -85,7 +85,7 @@
         android:layout_marginTop="20dp"
         android:background="#FF4081"
         android:padding="8dp"
-        android:text="Next"
+        android:text="@string/next"
         android:textColor="#FFF3E0"
         android:textSize="20sp" />
 

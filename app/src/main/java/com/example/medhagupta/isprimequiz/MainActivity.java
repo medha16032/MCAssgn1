@@ -78,12 +78,12 @@ public class MainActivity extends ActionBarActivity {
 
                     String corr = Integer.toString(correct);
                     correctAns.setText(corr);
-                    Toast.makeText(getApplicationContext(), "Correct!!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Correct!!", Toast.LENGTH_SHORT).show();
                 } else {
                     wrong++;
                     String wr = Integer.toString(wrong);
                     inCorrectAns.setText(wr);
-                    Toast.makeText(getApplicationContext(), "InCorrect!!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "InCorrect!!", Toast.LENGTH_SHORT).show();
                 }
                 createRandom();
             }
@@ -98,14 +98,14 @@ public class MainActivity extends ActionBarActivity {
 
                     String corr = Integer.toString(correct);
                     correctAns.setText(corr);
-                    Toast.makeText(getApplicationContext(), "Correct!!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Correct!!", Toast.LENGTH_SHORT).show();
                 } else {
 
                     wrong++;
                     String wr = Integer.toString(wrong);
                     inCorrectAns.setText(wr);
 
-                    Toast.makeText(getApplicationContext(), "InCorrect!!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "InCorrect!!", Toast.LENGTH_SHORT).show();
                 }
                 createRandom();
             }
